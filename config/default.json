@@ -1,0 +1,6 @@
+// default.json
+
+{
+    "mongoURI":
+      "mongodb+srv://mhamidjamil99:hamidjamil710@cluster0.e0kolno.mongodb.net/test"
+  }
