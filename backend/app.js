@@ -1,17 +1,26 @@
 const express = require("express");
 const connectDB = require("./config/db");
+const cors = require("cors");
+
+// routes
+const books = require("./routes/api/books");
 
 const app = express();
 
 // Connect Database
 connectDB();
 
+// cors
+app.use(cors({ origin: true, credentials: true }));
+
+// Init Middleware
+app.use(express.json({ extended: false }));
+
 app.get("/", (req, res) => res.send("Hello world!"));
-app.get("/page1", (req, res) => res.send("Hello rom page 1!"));
+
+// use Routes
+app.use("/api/books", books);
 
 const port = process.env.PORT || 8082;
-// const output = "Server is running at : ";
-const output = `Server is running at : `;
 
-app.listen(port, () => console.log(`${output} port ${port}`));
-// app.listen(8085, () => console.log(`Server running on port ${port}`));
+app.listen(port, () => console.log(`Server running on port ${port}`));
